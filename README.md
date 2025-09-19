@@ -6,7 +6,7 @@ API que consome a **Weather API ([https://www.weatherapi.com/](https://www.weath
 
 ## Configuração
 
-Caso haja necessidade de criar uma conta própria na plataforma, basta, após o cadastro estar completo, pegar a API Key disponibilizada no seu Dashboard:
+Caso haja necessidade de criar uma conta própria na plataforma, basta, após o cadastro estar completo, pegar a API Key disponibilizada no seu Dashboard. (Essa API KEY tem a gratuidade ate 02/10/2025):
 
 <img width="1175" height="279" alt="image" src="https://github.com/user-attachments/assets/4c42e3d1-38ab-4a95-b802-afe64b003a67" />
 
@@ -39,6 +39,8 @@ GO
 ---
 
 ## Endpoints
+
+OBS: No endpoint 1 e 2, a ideia foi criar uma Colunma chamada Key a fim de controle para saber o que ja foi chamado. Poderia chamar Paris, tanto no dia de hoje como nos proximos dias. No Endpoint 2, liberei a possibilidade de escolher a quantidade de dias (Até no maximo 5), e fazer as separações Por forecast_qtdDias, onde qtdDias é a quantidade que eu quero ver, assim podendo chamar nos proximos 3 dias, e se eu quiser ver os proximos dias, eu chamo a API novamente para evitar falta de dados. Sendo assim, para um unico Lugar posso chamar a API 6 vezes. Para uma v2 seria interessante criar uma forma de verificação que se eu tiver mais dias do que eu pedindo, inves de chamar a api de novo, tratar o dado para mostrar apenas a quantidade de dias selecionadas. (Exemplo: Selecionei 5 dias, agora so quero ver 4, inves de chamar a API, "esconder" o ultimo dia da lista e assim para outros dias).
 
 ### 1. Clima Atual
 
