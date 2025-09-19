@@ -117,7 +117,7 @@ Retorna a previsão do tempo para os próximos dias.
 GET /api/weather/history
 ```
 
-Retorna as últimas cidades consultadas, incluindo o tipo de consulta (`current` ou `forecast_{qtdDias}`) e a data/hora da busca.
+Retorna as últimas cidades consultadas, incluindo o tipo de consulta (`current` ou `forecast_{qtdDias}`) e a data/hora da busca (Horário de Brasilia).
 
 **Exemplo de resposta:**
 
