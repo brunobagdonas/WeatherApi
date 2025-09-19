@@ -122,7 +122,7 @@ Retorna as últimas cidades consultadas, incluindo o tipo de consulta (`current`
 ```json
 [
   { "city": "London", "type": "current", "retrievedAtUtc": "2025-09-19T16:23:00Z" },
-  { "city": "Paris", "type": "forecast", "retrievedAtUtc": "2025-09-19T16:15:00Z" }
+  { "city": "Paris", "type": "forecast_2", "retrievedAtUtc": "2025-09-19T16:15:00Z" }
 ]
 ```
 
@@ -135,7 +135,7 @@ Retorna as últimas cidades consultadas, incluindo o tipo de consulta (`current`
 
 ---
 
-## Quickstart / Testes
+## Quickstart 
 
 1. Altere a API Key e a ConnectionString no `appSettings.json`.
 2. Crie o banco e a tabela de cache conforme mostrado acima.
