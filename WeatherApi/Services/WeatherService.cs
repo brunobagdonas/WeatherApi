@@ -26,11 +26,14 @@ namespace WeatherApi.Services
             try
             {
                 var key = "current";
+
+                //VERIFICA SE TEM CACHE
                 var cached = await _db.CachedWeathers
                     .Where(c => c.City.ToLower() == city.ToLower() && c.Type == key)
                     .OrderByDescending(c => c.RetrievedAtUtc)
                     .FirstOrDefaultAsync();
 
+                //SE TIVER CACHE, RETORNA INFO DO BANCO
                 if (cached != null && (DateTime.UtcNow - cached.RetrievedAtUtc).TotalMinutes < _cacheMinutes)
                 {
                     _logger.LogInformation("Returning cached current weather for {city}", city);
@@ -51,6 +54,7 @@ namespace WeatherApi.Services
                     };
                 }
 
+                //SE NAO TIVER CACHE CHAMA A API 
                 _logger.LogInformation("Fetching current weather for {city} from external API", city);
                 var payload = await _client.GetCurrentWeatherApi(city);
 
@@ -106,6 +110,8 @@ namespace WeatherApi.Services
             try
             {
                 var key = $"forecast_{daysQuantity}";
+                
+                //VERIFICA SE TEM CACHE
                 var cached = await _db.CachedWeathers
                     .Where(c => c.City.ToLower() == city.ToLower() && c.Type == key)
                     .OrderByDescending(c => c.RetrievedAtUtc)
@@ -118,6 +124,7 @@ namespace WeatherApi.Services
                     return ParseForecastDto(cached.PayloadJson, daysQuantity);
                 }
 
+                //SE NÃO TIVER CACHE, CHAMA A API 
                 _logger.LogInformation("Fetching forecast for {city} from external API", city);
                 var payload = await _client.GetDayForecastApi(city, daysQuantity);
 
@@ -151,6 +158,7 @@ namespace WeatherApi.Services
             }
         }
 
+        //MODIFICA O FORMATO QUE RETORNA AO CLIENTE
         private ForecastDto ParseForecastDto(string payload, int daysQuantity)
         {
             using var doc = JsonDocument.Parse(payload);
@@ -193,7 +201,7 @@ namespace WeatherApi.Services
                     {
                         City = c.City,
                         Type = c.Type,
-                        RetrievedAtUtc = c.RetrievedAtUtc.AddHours(-3)
+                        RetrievedAtUtc = c.RetrievedAtUtc.AddHours(-3) //HORARIO DE BRASILIA
                     })
                     .ToListAsync();
 

@@ -20,7 +20,6 @@ namespace WeatherApi.Services.Background
 
         /// <summary>
         /// Executa a limpeza do cache uma única vez.
-        /// Pode ser usado em testes unitários.
         /// </summary>
         internal async Task CleanupOnceAsync(WeatherDbContext db)
         {
